@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import React from 'react';
 import {
   AlertTriangle,
   Building2,
@@ -32,10 +33,10 @@ export default function App() {
         </div>
 
         {/* Body */}
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
           
           {/* Sidebar (Left Column) */}
-          <div className="w-[300px] shrink-0 border-r border-gray-200 p-6 overflow-y-auto flex flex-col gap-6">
+          <div className="w-full lg:w-[300px] shrink-0 border-b lg:border-b-0 lg:border-r border-gray-200 p-6 overflow-y-auto lg:overflow-y-auto flex flex-col gap-6 bg-white z-10 max-h-[250px] lg:max-h-full">
             
             {/* User Profile Info Header */}
             <div className="flex items-center gap-3 border-b border-gray-200 pb-4">
@@ -92,65 +93,71 @@ export default function App() {
                       {/* Header & Badges */}
                       <div className="flex justify-between items-start mb-4">
                         <div className="flex flex-col">
-                          <span className="text-[#00a9e2] font-semibold text-lg">Diagnóstico actual</span>
-                          <span className="text-gray-400 text-xs mt-0.5">31/12/2025</span>
+                          <span className="text-[#00a9e2] font-bold text-lg leading-tight tracking-tight uppercase">Diagnóstico actual</span>
+                          <span className="text-gray-400 text-xs mt-1 font-medium italic">Evaluado el 31/12/2025</span>
                         </div>
                         
                         <div className="flex gap-2">
-                           <div className="bg-[#f0f9ff] border border-[#bae6fd] rounded-lg px-2.5 py-1 flex flex-col items-center shadow-sm">
-                             <span className="text-[10px] text-[#00a9e2] uppercase mb-0.5 font-bold tracking-wider">Referido</span>
-                             <span className="text-xs font-bold text-[#0369a1]">No</span>
-                           </div>
-                           <div className="bg-[#f0f9ff] border border-[#bae6fd] rounded-lg px-2.5 py-1 flex flex-col items-center shadow-sm">
-                             <span className="text-[10px] text-[#00a9e2] uppercase mb-0.5 font-bold tracking-wider">Recuperado</span>
-                             <span className="text-xs font-bold text-[#0369a1]">No</span>
-                           </div>
+                           <Badge label="Referido" value="No" />
+                           <Badge label="Recuperado" value="No" />
                         </div>
                       </div>
 
-                      {/* Hb Value Header */}
-                      <div className="flex justify-between items-end mb-2">
-                        <span className="text-sm font-bold text-[#3b4754] mb-1">Hemoglobina (Hb)</span>
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-[2.5rem] leading-none font-black tracking-tight text-[#1e293b]">6.1</span>
-                          <span className="text-sm font-medium text-gray-400">mg/dL</span>
+                      {/* Prominent Hb Value Readout - Column heights targeted to ~49px */}
+                      <div className="flex items-center justify-between bg-white border-2 rounded-2xl p-3 mb-0 shadow-[0_8px_32px_-12px_rgba(228,21,31,0.2)] relative z-20 overflow-hidden h-[78px]" style={{ borderColor: '#e4151f' }}>
+                        {/* Status Color Accent */}
+                        <div className="absolute left-0 top-0 bottom-0 w-1.5 shadow-[2px_0_10px_rgba(228,21,31,0.3)]" style={{ backgroundColor: '#e4151f' }}></div>
+                        
+                        <div className="flex flex-col pl-4 justify-center h-[49px]">
+                           <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Resultado de Hb</span>
+                           <div className="flex items-baseline gap-1.5">
+                             <span className="text-[46px] font-black tracking-tighter leading-none drop-shadow-[0_2px_4px_rgba(228,21,31,0.15)]" style={{ color: '#e4151f' }}>6.1</span>
+                             <span className="text-xs font-bold text-slate-500 leading-none">mg/dL</span>
+                           </div>
+                        </div>
+                        <div className="flex flex-col items-center gap-1.5 pr-2 h-[49px] justify-center text-center">
+                           <div className="px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(228,21,31,0.2)] flex items-center justify-center gap-2 border border-red-400 font-extrabold text-white text-[12px] uppercase tracking-wider drop-shadow-sm" style={{ backgroundColor: '#e4151f' }}>
+                              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                              Anemia severa
+                           </div>
+                           <span className="text-[9px] font-black uppercase tracking-widest opacity-80 italic leading-none drop-shadow-sm" style={{ color: '#e4151f' }}>Nivel Crítico</span>
                         </div>
                       </div>
                       
-                      {/* Bar Chart Section */}
-                      <div className="relative pb-5 pt-1">
-                        {/* Progress Bar Container */}
-                        <div className="h-2.5 w-full flex rounded-full overflow-hidden shadow-inner bg-gray-100">
-                          <div className="bg-[#f03e3e] h-full" style={{ width: '38%' }}></div>
-                          <div className="bg-[#f59f00] h-full" style={{ width: '24%' }}></div>
-                          <div className="bg-[#2b8a3e] h-full" style={{ width: '38%' }}></div>
+                      {/* Vibrant Gauge Section - Height optimized for ~216px total card */}
+                      <div className="relative pt-5 pb-1.5 px-2 flex flex-col items-center bg-slate-50/50 rounded-b-2xl border-x border-b border-red-50/40">
+                        {/* Connecting Pointer */}
+                        <div className="absolute top-[-1px] left-[43.57%] flex flex-col items-center -translate-x-1/2 z-40">
+                           <div className="w-[2px] h-[18px] border-x border-white shadow-[0_0_8px_rgba(228,21,31,0.3)] rounded-full" style={{ backgroundColor: '#e4151f' }}></div>
                         </div>
-                        
-                        {/* Tooltip Marker */}
-                        <div className="absolute top-[8px] left-[32%] flex flex-col items-center -translate-x-1/2 drop-shadow-md z-10 transition-transform hover:scale-105">
-                          <div className="w-2 h-2 bg-[#1e293b] rotate-45 mb-[-5px]"></div>
-                          <div className="bg-[#1e293b] text-white text-[8px] font-bold px-2 py-[2px] rounded tracking-wider relative z-10 w-max shadow-sm">
-                            ACTUAL
-                          </div>
+
+                        {/* Subtle Boundary Numbers ABOVE THE BAR */}
+                        <div className="absolute top-[4.5px] left-[50%] -translate-x-1/2">
+                           <span className="text-[9px] font-black text-slate-500/40">7.0</span>
+                        </div>
+                        <div className="absolute top-[4.5px] left-[68%] -translate-x-1/2">
+                           <span className="text-[9px] font-black text-slate-500/40">9.5</span>
+                        </div>
+                        <div className="absolute top-[4.5px] left-[75%] -translate-x-1/2">
+                           <span className="text-[9px] font-black text-slate-500/40">10.5</span>
+                        </div>
+
+                        {/* The Thin Gauge Bar - 9px height */}
+                        <div className="h-[9px] w-full mt-1 flex rounded-full overflow-hidden bg-slate-200 relative z-10 border border-slate-100">
+                          <div className="bg-red-500 h-full relative" style={{ width: '50%' }}></div>
+                          <div className="bg-orange-500 h-full relative" style={{ width: '18%' }}></div>
+                          <div className="bg-yellow-400 h-full relative" style={{ width: '7%' }}></div>
+                          <div className="bg-green-500 h-full relative" style={{ width: '25%' }}></div>
                         </div>
 
                         {/* Labels underneath */}
-                        <div className="flex w-full mt-[10px] text-[9px] font-bold tracking-wider text-gray-400">
-                           <div className="w-[38%] text-left">SEVERA (&lt;&nbsp;7)</div>
-                           <div className="w-[24%] text-center">MODERADA (7-10.9)</div>
-                           <div className="w-[38%] text-right">NORMAL (&gt;&nbsp;12)</div>
+                        <div className="flex w-full mt-1 px-1 justify-between text-[8px] font-black text-slate-500/80 uppercase tracking-wide">
+                           <span className="w-[50%] text-center ml-[-10%]">Severa</span>
+                           <span className="w-[18%] text-center">Mod.</span>
+                           <span className="w-[7%] text-center">Leve</span>
+                           <span className="w-[25%] text-center">Normal</span>
                         </div>
                       </div>
-
-                      {/* Diagnosis Result (Anemia severa) */}
-                      <div className="w-full bg-gray-100 h-[1px] my-1"></div>
-                      <div className="flex items-center justify-center pt-3 pb-1">
-                         <div className="flex items-center gap-2 bg-[#fee2e2] px-4 py-1.5 rounded-full border border-[#fca5a5] shadow-sm">
-                            <span className="w-2 h-2 rounded-full bg-[#ef4444] animate-pulse"></span>
-                            <span className="font-bold text-[#b91c1c] text-sm uppercase tracking-wide">Anemia severa</span>
-                         </div>
-                      </div>
-
                     </div>
                     {/* Floating Button under Card 1 */}
                     <button className="flex items-center gap-2 pl-3 pr-4 py-1.5 bg-white border border-[#00a9e2] rounded-full text-[#00a9e2] text-sm font-medium -mt-[14px] z-10 shadow-sm hover:bg-[#00a9e2] hover:text-white transition-colors">
@@ -206,7 +213,12 @@ export default function App() {
                 </div>
 
                 {/* Treatment Grid Matrix */}
-                <div className="flex flex-col gap-5 mt-2 overflow-x-auto pb-4">
+                <div className="flex flex-col mb-2">
+                  <div className="text-[11px] text-[#00a9e2] font-medium bg-[#f0f9ff] px-3 py-1.5 border border-[#bae6fd] rounded-md md:hidden mb-4 flex items-center justify-center text-center">
+                    ← Desliza horizontalmente para ver todos los meses →
+                  </div>
+                  
+                  <div className="flex flex-col gap-5 overflow-x-auto pb-4 container-scrollbar">
                   
                   {/* Grid Headers */}
                   <div className="flex min-w-[700px]">
@@ -299,55 +311,87 @@ export default function App() {
                     </div>
 
                     {/* Row 6: Visitas Domiciliarias */}
-                    <div className="flex min-w-[700px] items-center">
-                      <div className="w-[140px] shrink-0 pr-4 text-right">
+                    <div className="flex min-w-[700px] items-start pt-3 border-t border-gray-100">
+                      <div className="w-[140px] shrink-0 pr-4 text-right mt-1">
                         <span className="text-xs font-bold text-gray-700 leading-tight block">Visitas<br/>Domiciliarias</span>
+                        <span className="text-[9px] text-[#8a3395] font-medium mt-1.5 block leading-tight">4 visitas planeadas<br/>al mes</span>
                       </div>
-                      <div className="flex-1 grid grid-cols-6 gap-2 place-items-center">
-                        {/* Ejemplo de visitas de 1 a 4 */}
-                        <ValuePill value="3" active={true} />
-                        <ValuePill value="-" active={false} />
-                        <ValuePill value="-" active={false} />
-                        <ValuePill value="-" active={false} />
-                        <ValuePill value="-" active={false} />
-                        <ValuePill value="-" active={false} />
+                      <div className="flex-1 grid grid-cols-6 gap-2 place-items-start">
+                        {/* M1: Diciembre */}
+                        <div className="w-full flex flex-col gap-1.5">
+                           <VisitPill number={1} status="attended" date="05 Dic" />
+                           <VisitPill number={2} status="missed" date="12 Dic" />
+                           <VisitPill number={3} status="attended" date="19 Dic" />
+                           <VisitPill number={4} status="pending" date="26 Dic" />
+                        </div>
+                        {/* M2: Enero */}
+                        <div className="w-full flex flex-col gap-1.5">
+                           <VisitPill number={1} status="pending" date="02 Ene" />
+                           <VisitPill number={2} status="pending" date="09 Ene" />
+                           <VisitPill number={3} status="pending" date="16 Ene" />
+                           <VisitPill number={4} status="pending" date="23 Ene" />
+                        </div>
+                        {/* M3: Marzo */}
+                        <div className="w-full flex flex-col gap-1.5">
+                           <VisitPill number={1} status="pending" date="02 Mar" />
+                           <VisitPill number={2} status="pending" date="09 Mar" />
+                           <VisitPill number={3} status="pending" date="16 Mar" />
+                           <VisitPill number={4} status="pending" date="23 Mar" />
+                        </div>
+                        {/* M4: Marzo */}
+                        <div className="w-full flex flex-col gap-1.5">
+                           <VisitPill number={1} status="pending" date="05 Mar" />
+                           <VisitPill number={2} status="pending" date="12 Mar" />
+                           <VisitPill number={3} status="pending" date="19 Mar" />
+                           <VisitPill number={4} status="pending" date="26 Mar" />
+                        </div>
+                        {/* M5: Abril */}
+                        <div className="w-full flex flex-col gap-1.5">
+                           <VisitPill number={1} status="pending" date="05 Abr" />
+                           <VisitPill number={2} status="pending" date="12 Abr" />
+                           <VisitPill number={3} status="pending" date="19 Abr" />
+                           <VisitPill number={4} status="pending" date="26 Abr" />
+                        </div>
+                        {/* M6: Mayo */}
+                        <div className="w-full flex flex-col gap-1.5">
+                           <VisitPill number={1} status="pending" date="05 May" />
+                           <VisitPill number={2} status="pending" date="12 May" />
+                           <VisitPill number={3} status="pending" date="19 May" />
+                           <VisitPill number={4} status="pending" date="26 May" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Legend (Footer area) */}
-                <div className="mt-8 border border-gray-200 rounded-lg p-3 flex justify-center items-center gap-8 bg-white max-w-3xl mx-auto shadow-sm">
-                   <LegendItem 
-                      icon={<AlertTriangle size={18} fill="#ff1744" stroke="white" className="text-white" />} 
-                      IconComponent={null}
-                      text="No Asistió" 
-                   />
-                   <LegendItem 
-                      icon={<CheckCircle2 size={18} fill="#00a9e2" stroke="white" className="text-white" />} 
-                      IconComponent={null}
-                      text="Asistió" 
-                   />
-                   <LegendItem 
-                      icon={<AlertTriangle size={18} fill="#ffc107" stroke="white" className="text-white" />} 
-                      IconComponent={null}
-                      text="A Destiempo" 
-                   />
-                   <LegendItem 
-                      icon={
-                        <div className="w-[18px] h-[18px] rounded-full bg-gray-200 flex items-center justify-center border border-gray-300">
-                           <MoreHorizontal size={12} className="text-gray-400" />
-                        </div>
-                      }
-                      IconComponent={null}
-                      text="Pendiente" 
-                   />
-                </div>
+                 {/* Legend (Footer area) */}
+                 <div className="mt-8 border border-gray-200 rounded-lg p-3 flex justify-center items-center gap-8 bg-white max-w-3xl mx-auto shadow-sm">
+                    <LegendItem 
+                       icon={<AlertTriangle size={18} fill="#ff1744" stroke="white" className="text-white" />} 
+                       text="No Asistió" 
+                    />
+                    <LegendItem 
+                       icon={<CheckCircle2 size={18} fill="#00a9e2" stroke="white" className="text-white" />} 
+                       text="Asistió" 
+                    />
+                    <LegendItem 
+                       icon={<AlertTriangle size={18} fill="#ffc107" stroke="white" className="text-white" />} 
+                       text="A Destiempo" 
+                    />
+                    <LegendItem 
+                       icon={
+                         <div className="w-[18px] h-[18px] rounded-full bg-gray-200 flex items-center justify-center border border-gray-300">
+                            <MoreHorizontal size={12} className="text-gray-400" />
+                         </div>
+                       }
+                       text="Pendiente" 
+                    />
+                 </div>
 
-             </div>
-          </div>
-
-        </div>
+              </div>
+           </div>
+         </div>
       </div>
     </div>
   );
@@ -362,6 +406,15 @@ function DetailRow({ label, value }: { label: string, value: string }) {
       <span className="text-[#8a3395] font-bold text-[13px] leading-tight">
         {value}
       </span>
+    </div>
+  );
+}
+
+function Badge({ label, value }: { label: string, value: string }) {
+  return (
+    <div className="bg-[#f0f9ff] border border-[#bae6fd] rounded-xl px-3 py-2 flex flex-col items-center shadow-sm min-w-[80px]">
+      <span className="text-[10px] text-[#00a9e2] uppercase mb-0.5 font-black tracking-widest opacity-60">{label}</span>
+      <span className="text-sm font-black text-[#0369a1]">{value}</span>
     </div>
   );
 }
@@ -387,13 +440,44 @@ function LegendItem({
   text 
 }: { 
   icon?: React.ReactNode, 
-  IconComponent?: React.ElementType, 
+  IconComponent?: any, 
   text: string 
 }) {
   return (
     <div className="flex items-center gap-2">
       {icon ? icon : (IconComponent && <IconComponent size={18} />)}
       <span className="text-xs font-semibold text-gray-700">{text}</span>
+    </div>
+  );
+}
+
+function VisitPill({ 
+  number, 
+  status, 
+  date 
+}: { 
+  number: number, 
+  status: 'attended' | 'missed' | 'pending', 
+  date: string 
+}) {
+  const isAttended = status === 'attended';
+  const isMissed = status === 'missed';
+
+  return (
+    <div className={`flex justify-between items-center px-1.5 py-1 rounded w-full border transition-all ${
+      isAttended ? 'bg-[#f0f9ff] border-[#bae6fd] text-[#00a9e2]' :
+      isMissed ? 'bg-[#fee2e2] border-[#fca5a5] text-[#ef4444]' :
+      'bg-white border-gray-200 text-gray-400'
+    } hover:shadow-sm`}>
+      <div className="flex items-center gap-1.5">
+        <span className={`font-black text-[10px] ${isAttended ? 'text-[#0369a1]' : isMissed ? 'text-[#b91c1c]' : 'text-gray-500'}`}>
+          V{number}
+        </span>
+        {isAttended && <CheckCircle2 size={12} strokeWidth={3} className="text-[#00a9e2]" />}
+        {isMissed && <AlertTriangle size={12} strokeWidth={3} className="text-[#ef4444]" />}
+        {!isAttended && !isMissed && <MoreHorizontal size={12} className="text-gray-300" />}
+      </div>
+      <span className="text-[10px] font-semibold tracking-tighter truncate ml-1">{date}</span>
     </div>
   );
 }
