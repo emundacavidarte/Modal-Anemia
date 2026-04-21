@@ -103,32 +103,31 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Prominent Hb Value Readout - Column heights targeted to ~49px */}
-                      <div className="flex items-center justify-between bg-white border-2 rounded-2xl p-3 mb-0 shadow-[0_8px_32px_-12px_rgba(228,21,31,0.2)] relative z-20 overflow-hidden h-[78px]" style={{ borderColor: '#e4151f' }}>
-                        {/* Status Color Accent */}
-                        <div className="absolute left-0 top-0 bottom-0 w-1.5 shadow-[2px_0_10px_rgba(228,21,31,0.3)]" style={{ backgroundColor: '#e4151f' }}></div>
+                      {/* Prominent Hb Value Readout - Executive Tone */}
+                      <div className="flex items-center justify-between bg-white border border-[#00a9e2] rounded-2xl p-3 mb-0 shadow-[0_2px_15px_rgba(0,169,226,0.06)] relative z-20 overflow-hidden h-[78px]">
+                        {/* Status Color Accent - Now Celeste */}
+                        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00a9e2] shadow-[1px_0_5px_rgba(0,169,226,0.1)]"></div>
                         
                         <div className="flex flex-col pl-4 justify-center h-[49px]">
                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Resultado de Hb</span>
                            <div className="flex items-baseline gap-1.5">
-                             <span className="text-[46px] font-black tracking-tighter leading-none drop-shadow-[0_2px_4px_rgba(228,21,31,0.15)]" style={{ color: '#e4151f' }}>6.1</span>
+                             <span className="text-[46px] font-bold text-[#00a9e2] tracking-tighter leading-none drop-shadow-sm">6.1</span>
                              <span className="text-xs font-bold text-slate-500 leading-none">mg/dL</span>
                            </div>
                         </div>
                         <div className="flex flex-col items-center gap-1.5 pr-2 h-[49px] justify-center text-center">
-                           <div className="px-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(228,21,31,0.2)] flex items-center justify-center gap-2 border border-red-400 font-extrabold text-white text-[12px] uppercase tracking-wider drop-shadow-sm" style={{ backgroundColor: '#e4151f' }}>
-                              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                              Anemia severa
+                           <div className="px-4 py-1.5 rounded-full flex items-center justify-center gap-2 border border-red-300 bg-red-50 shadow-sm">
+                              <span className="font-extrabold text-red-800 text-[12px] uppercase tracking-wider">Anemia severa</span>
                            </div>
-                           <span className="text-[9px] font-black uppercase tracking-widest opacity-80 italic leading-none drop-shadow-sm" style={{ color: '#e4151f' }}>Nivel Crítico</span>
+                           <span className="text-[9px] font-black text-[#00a9e2] uppercase tracking-widest opacity-80 italic leading-none">Nivel Crítico</span>
                         </div>
                       </div>
                       
-                      {/* Vibrant Gauge Section - Height optimized for ~216px total card */}
-                      <div className="relative pt-5 pb-1.5 px-2 flex flex-col items-center bg-slate-50/50 rounded-b-2xl border-x border-b border-red-50/40">
-                        {/* Connecting Pointer */}
+                      {/* Vibrant Gauge Section - Executive Optimized */}
+                      <div className="relative pt-5 pb-1.5 px-2 flex flex-col items-center bg-white rounded-b-2xl">
+                        {/* Connecting Pointer - Now Celeste */}
                         <div className="absolute top-[-1px] left-[43.57%] flex flex-col items-center -translate-x-1/2 z-40">
-                           <div className="w-[2px] h-[18px] border-x border-white shadow-[0_0_8px_rgba(228,21,31,0.3)] rounded-full" style={{ backgroundColor: '#e4151f' }}></div>
+                           <div className="w-[1.5px] h-[18px] bg-[#00a9e2] shadow-[0_0_5px_rgba(0,169,226,0.2)] rounded-full"></div>
                         </div>
 
                         {/* Subtle Boundary Numbers ABOVE THE BAR */}
